@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/platform-Windows-blue" alt="platform">
-  <img src="https://img.shields.io/badge/license-AGPL--3.0-green" alt="license">
+  <img src="https://img.shields.io/badge/license-GPL--3.0-green" alt="license">
   <img src="https://img.shields.io/badge/MaaFramework-latest-purple" alt="MaaFramework">
   <img src="https://img.shields.io/github/v/release/Shasnow/StarRailAssistant?label=version" alt="version" style="display:none">
 </p>
@@ -126,12 +126,19 @@ HonkaiStarRailAssistant/
 
 ## 📄 许可证
 
-本项目基于 [GNU Affero General Public License v3.0](LICENSE) 开源，由 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 强力驱动。
+本项目基于 [GNU General Public License v3.0](LICENSE) 开源。
+
+部分模板图片来自 [StarRailAssistant](https://github.com/Shasnow/StarRailAssistant) (GPL-3.0)。
+
+由 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) (LGPL-3.0) 强力驱动。
 
 ---
 
 ## 🙏 致谢
 
-- [MaaFramework](https://github.com/MaaXYZ/MaaFramework) — 通用游戏自动化框架
-- [MaaStarRail](https://github.com/VincenttHo/MaaStarRail) — 本项目早期的 Pipeline 参考
-- [March7thAssistant](https://github.com/moesnow/March7thAssistant) — 功能设计参考
+| 项目 | 许可证 | 用途 |
+|------|--------|------|
+| [MaaFramework](https://github.com/MaaXYZ/MaaFramework) | LGPL-3.0 | 核心框架 |
+| [StarRailAssistant](https://github.com/Shasnow/StarRailAssistant) | GPL-3.0 | 模板图片资源 |
+| [MaaStarRail](https://github.com/VincenttHo/MaaStarRail) | MIT | Pipeline 结构参考 |
+| [March7thAssistant](https://github.com/moesnow/March7thAssistant) | GPL-3.0 | 功能设计参考 |
