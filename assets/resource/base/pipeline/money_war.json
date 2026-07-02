@@ -1,0 +1,41 @@
+{
+    "_comment": "货币战争 Pipeline - PC 端",
+    "_description": "自动刷标准博弈/超频博弈",
+    "_note": "最高难度不一定能赢，建议刷中低难度",
+
+    "MoneyWar": {
+        "recognition": "TemplateMatch",
+        "template": "universe/MoneyWarButton.png",
+        "action": "Click",
+        "_comment": "打开货币战争入口",
+        "next": "MoneyWarMode"
+    },
+    "MoneyWarMode": {
+        "recognition": "OCR",
+        "expected": ["标准博弈", "超频博弈"],
+        "action": "Click",
+        "_comment": "选择博弈模式",
+        "next": "MoneyWarStart"
+    },
+    "MoneyWarStart": {
+        "recognition": "TemplateMatch",
+        "template": "universe/StartMoneyWar.png",
+        "action": "Click",
+        "_comment": "开始博弈",
+        "next": "MoneyWarAuto"
+    },
+    "MoneyWarAuto": {
+        "recognition": "TemplateMatch",
+        "template": "combat/AutoBattle.png",
+        "action": "Click",
+        "_comment": "自动博弈",
+        "next": "MoneyWarResult"
+    },
+    "MoneyWarResult": {
+        "recognition": "OCR",
+        "expected": "再来一局",
+        "action": "Click",
+        "_comment": "继续下一局",
+        "next": "MoneyWarStart"
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "controller": {
+        "name": "pc",
+        "adb": {
+            "serial": "127.0.0.1:5555"
+        }
+    },
+    "resource": {
+        "name": "官服"
+    },
+    "task": [
+        {
+            "name": "登录游戏",
+            "entry": "Login"
+        },
+        {
+            "name": "清体力",
+            "entry": "Combat",
+            "param": {
+                "作战关卡": "遗器-勇骑之径（铁骑，勇烈）"
+            }
+        },
+        {
+            "name": "领取日常奖励",
+            "entry": "GainDailyAwards"
+        },
+        {
+            "name": "委托派遣",
+            "entry": "Dispatch"
+        },
+        {
+            "name": "领取周常奖励",
+            "entry": "WeeklyAwards"
+        },
+        {
+            "name": "模拟宇宙",
+            "entry": "SimulatedUniverse",
+            "param": {
+                "宇宙类型": "差分宇宙"
+            }
+        },
+        {
+            "name": "货币战争",
+            "entry": "MoneyWar"
+        }
+    ]
+}

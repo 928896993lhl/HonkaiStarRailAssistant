@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# 构建输出
+install/
+deps/
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# MaaFramework 日志
+debug/
+*.log
+
+# 临时文件
+*.tmp
+*.bak
+*.zip
+*.7z
+
+# 敏感配置（如需要可在此添加）
+# config/local_*.json
+
+# 测试输出
+tests/output/

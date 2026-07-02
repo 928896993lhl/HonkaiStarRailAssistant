@@ -1,0 +1,79 @@
+{
+    "_comment": "登录游戏 Pipeline - PC 端 1920x1080 窗口模式",
+    "Login": {
+        "next": [
+            "LoginGame",
+            "GainMonthlyCard",
+            "LoginSuccess",
+            "BlackScreen",
+            "Title",
+            "TitleLoading",
+            "Loading"
+        ]
+    },
+    "LoginSuccess": {
+        "recognition": "TemplateMatch",
+        "template": "login/MissionButton.png",
+        "_comment": "检测到主页按钮 = 登录成功"
+    },
+    "LoginGame": {
+        "recognition": "TemplateMatch",
+        "template": "login/LoginButton.png",
+        "action": "Click",
+        "_comment": "点击开始游戏",
+        "next": ["IntoGame"]
+    },
+    "IntoGame": {
+        "next": [
+            "GainMonthlyCard",
+            "LoginSuccess",
+            "LoginGame-BlackScreen",
+            "Loading"
+        ]
+    },
+    "GainMonthlyCard": {
+        "recognition": "OCR",
+        "expected": "点击领取",
+        "action": "Click",
+        "_comment": "领取月卡/通行证奖励弹窗",
+        "next": "IntoGame"
+    },
+    "TitleLoading": {
+        "recognition": "TemplateMatch",
+        "template": "login/TitleLoading.png",
+        "action": "Click",
+        "_comment": "标题加载画面，点击跳过",
+        "next": "Login"
+    },
+    "Loading": {
+        "recognition": "TemplateMatch",
+        "template": "common/Loading.png",
+        "action": "DoNothing",
+        "_comment": "加载中，等待",
+        "next": "IntoGame",
+        "post_delay": 3000
+    },
+    "BlackScreen": {
+        "recognition": "ColorMatch",
+        "lower": [0, 0, 0],
+        "upper": [10, 10, 10],
+        "roi": [400, 200, 800, 500],
+        "_comment": "黑屏检测，可能是加载中",
+        "next": "Login",
+        "post_delay": 2000
+    },
+    "LoginGame-BlackScreen": {
+        "recognition": "ColorMatch",
+        "lower": [0, 0, 0],
+        "upper": [10, 10, 10],
+        "roi": [400, 200, 800, 500],
+        "_comment": "登入后的黑屏过渡",
+        "next": "IntoGame"
+    },
+    "Title": {
+        "recognition": "OCR",
+        "expected": ["健康游戏忠告", "游戏前详阅"],
+        "_comment": "健康游戏提示画面",
+        "next": "Login"
+    }
+}

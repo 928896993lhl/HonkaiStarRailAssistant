@@ -1,0 +1,83 @@
+{
+    "_comment": "模拟宇宙 Pipeline - PC 端",
+    "_description": "自动刷差分宇宙到每周积分上限",
+    "_note": "此 Pipeline 需要配合 custom/universe_strategy.py 使用，处理祝福选择逻辑",
+
+    "SimulatedUniverse": {
+        "recognition": "TemplateMatch",
+        "template": "universe/UniverseButton.png",
+        "action": "Click",
+        "_comment": "打开模拟宇宙入口",
+        "next": "UniverseSelect"
+    },
+    "UniverseSelect": {
+        "recognition": "OCR",
+        "action": "Click",
+        "_comment": "选择宇宙类型（由 option 动态覆写）",
+        "next": "UniverseEnter"
+    },
+    "UniverseEnter": {
+        "recognition": "TemplateMatch",
+        "template": "universe/EnterUniverse.png",
+        "action": "Click",
+        "_comment": "进入模拟宇宙",
+        "next": "UniverseBlessing"
+    },
+    "UniverseBlessing": {
+        "recognition": "Custom",
+        "custom_recognition": "SimulatedUniverseLogic",
+        "action": "Custom",
+        "custom_action": "SimulatedUniverseLogic",
+        "_comment": "调用自定义 Python 逻辑选择祝福",
+        "next": "UniverseNavigating"
+    },
+    "UniverseNavigating": {
+        "recognition": "TemplateMatch",
+        "template": "universe/NavigationArrow.png",
+        "action": "Click",
+        "_comment": "点击前进",
+        "next": [
+            "UniverseBlessing",
+            "UniverseBattle",
+            "UniverseEvent",
+            "UniverseShop",
+            "UniverseComplete"
+        ]
+    },
+    "UniverseBattle": {
+        "recognition": "TemplateMatch",
+        "template": "universe/BattleIcon.png",
+        "action": "Click",
+        "_comment": "进入战斗",
+        "next": "AutoBattle"
+    },
+    "AutoBattle": {
+        "recognition": "TemplateMatch",
+        "template": "combat/AutoBattle.png",
+        "action": "Click",
+        "next": "UniverseNavigating"
+    },
+    "UniverseEvent": {
+        "recognition": "TemplateMatch",
+        "template": "universe/EventIcon.png",
+        "action": "Custom",
+        "custom_action": "UniverseEventHandler",
+        "_comment": "处理事件选项",
+        "next": "UniverseNavigating"
+    },
+    "UniverseShop": {
+        "recognition": "TemplateMatch",
+        "template": "universe/ShopIcon.png",
+        "action": "Custom",
+        "custom_action": "UniverseShopHandler",
+        "_comment": "处理商店（购买祝福）",
+        "next": "UniverseNavigating"
+    },
+    "UniverseComplete": {
+        "recognition": "OCR",
+        "expected": "积分上限",
+        "action": "Click",
+        "_comment": "已达积分上限，退出",
+        "next": "ExitToHome"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "_comment": "一键日常 Pipeline - 串联所有日常任务",
+    "_description": "按顺序执行：登录→领取日常→委托→清体力→退出",
+
+    "QuickDaily": {
+        "next": [
+            "Login",
+            "GainDailyAwards",
+            "Dispatch",
+            "Combat",
+            "ExitToHome"
+        ],
+        "_comment": "串联执行，每个任务完成后自动跳转下一个"
+    }
+}

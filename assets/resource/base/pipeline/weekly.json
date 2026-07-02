@@ -1,0 +1,50 @@
+{
+    "_comment": "周常奖励 Pipeline - PC 端（历战余响等）",
+
+    "WeeklyAwards": {
+        "next": [
+            "OpenEchoOfWar",
+            "ExitToHome"
+        ]
+    },
+    "OpenEchoOfWar": {
+        "recognition": "TemplateMatch",
+        "template": "weekly/EchoOfWarButton.png",
+        "action": "Click",
+        "_comment": "进入历战余响界面",
+        "next": "SelectEchoBoss"
+    },
+    "SelectEchoBoss": {
+        "recognition": "OCR",
+        "expected": "挑战",
+        "action": "Click",
+        "_comment": "选择BOSS并开始挑战",
+        "next": "ConfirmEcho"
+    },
+    "ConfirmEcho": {
+        "recognition": "TemplateMatch",
+        "template": "combat/StartBattle.png",
+        "action": "Click",
+        "_comment": "确认开始历战",
+        "next": "AutoEchoBattle"
+    },
+    "AutoEchoBattle": {
+        "recognition": "TemplateMatch",
+        "template": "combat/AutoBattle.png",
+        "action": "Click",
+        "_comment": "开启自动战斗",
+        "next": "EchoBattleDone"
+    },
+    "EchoBattleDone": {
+        "recognition": "OCR",
+        "expected": "挑战",
+        "action": "DoNothing",
+        "_comment": "历战已完成（可继续挑战BOSS）",
+        "next": "ExitToHome"
+    },
+    "ExitToHome": {
+        "recognition": "TemplateMatch",
+        "template": "common/HomeButton.png",
+        "action": "Click"
+    }
+}

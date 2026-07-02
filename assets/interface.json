@@ -1,0 +1,195 @@
+{
+    "name": "崩坏:星穹铁道助手",
+    "description": "基于 MaaFramework 实现的 PC 端崩坏:星穹铁道自动化助手。图像识别 + Win32 窗口控制，解放双手！",
+    "version": "0.1.0",
+    "controller": [
+        {
+            "name": "pc",
+            "type": "Win32",
+            "win32": {
+                "window_name": "崩坏：星穹铁道",
+                "input_method": "SendMessage"
+            }
+        },
+        {
+            "name": "pc_admin",
+            "type": "Win32",
+            "win32": {
+                "window_name": "崩坏：星穹铁道",
+                "input_method": "Seize"
+            }
+        }
+    ],
+    "resource": [
+        {
+            "name": "官服",
+            "path": [
+                "{PROJECT_DIR}/resource/base"
+            ]
+        }
+    ],
+    "task": [
+        {
+            "name": "登录游戏",
+            "entry": "Login"
+        },
+        {
+            "name": "清体力",
+            "entry": "Combat",
+            "option": [
+                "作战关卡"
+            ]
+        },
+        {
+            "name": "领取日常奖励",
+            "entry": "GainDailyAwards"
+        },
+        {
+            "name": "委托派遣",
+            "entry": "Dispatch"
+        },
+        {
+            "name": "领取周常奖励",
+            "entry": "WeeklyAwards"
+        },
+        {
+            "name": "模拟宇宙",
+            "entry": "SimulatedUniverse",
+            "option": [
+                "宇宙类型"
+            ]
+        },
+        {
+            "name": "货币战争",
+            "entry": "MoneyWar"
+        },
+        {
+            "name": "一键日常",
+            "entry": "QuickDaily"
+        },
+        {
+            "name": "回到首页",
+            "entry": "ExitToHome"
+        }
+    ],
+    "option": {
+        "作战关卡": {
+            "cases": [
+                {
+                    "name": "遗器-勇骑之径（铁骑，勇烈）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "勇骑之径" },
+                        "Transform": { "expected": "勇骑之径" }
+                    }
+                },
+                {
+                    "name": "遗器-梦潜之径（先驱，钟表匠）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "梦潜之径" },
+                        "Transform": { "expected": "梦潜之径" }
+                    }
+                },
+                {
+                    "name": "遗器-幽冥之径（大公，系囚）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "幽冥之径" },
+                        "Transform": { "expected": "幽冥之径" }
+                    }
+                },
+                {
+                    "name": "遗器-药使之径（莳者，信使）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "药使之径" },
+                        "Transform": { "expected": "药使之径" }
+                    }
+                },
+                {
+                    "name": "遗器-野焰之径（火匠，废土客）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "野焰之径" },
+                        "Transform": { "expected": "野焰之径" }
+                    }
+                },
+                {
+                    "name": "遗器-圣颂之径（圣骑士，乐队）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "圣颂之径" },
+                        "Transform": { "expected": "圣颂之径" }
+                    }
+                },
+                {
+                    "name": "遗器-睿治之径（铁卫，天才）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "睿治之径" },
+                        "Transform": { "expected": "睿治之径" }
+                    }
+                },
+                {
+                    "name": "遗器-漂泊之径（过客，快枪手）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "漂泊之径" },
+                        "Transform": { "expected": "漂泊之径" }
+                    }
+                },
+                {
+                    "name": "遗器-迅拳之径（拳王，怪盗）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "迅拳之径" },
+                        "Transform": { "expected": "迅拳之径" }
+                    }
+                },
+                {
+                    "name": "遗器-霜风之径（猎人，翔鹰）",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "侵蚀隧洞" },
+                        "FindMission": { "expected": "霜风之径" },
+                        "Transform": { "expected": "霜风之径" }
+                    }
+                },
+                {
+                    "name": "角色经验-回忆之蕾",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "经验材料" },
+                        "FindMission": { "expected": "回忆之蕾" },
+                        "Transform": { "expected": "回忆之蕾" }
+                    }
+                },
+                {
+                    "name": "光锥经验-以太之蕾",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "经验材料" },
+                        "FindMission": { "expected": "以太之蕾" },
+                        "Transform": { "expected": "以太之蕾" }
+                    }
+                },
+                {
+                    "name": "信用点-藏珍之蕾",
+                    "pipeline_override": {
+                        "IntoMissionType": { "expected": "经验材料" },
+                        "FindMission": { "expected": "藏珍之蕾" },
+                        "Transform": { "expected": "藏珍之蕾" }
+                    }
+                }
+            ]
+        },
+        "宇宙类型": {
+            "cases": [
+                {
+                    "name": "差分宇宙",
+                    "pipeline_override": {
+                        "UniverseSelect": { "expected": "差分宇宙" }
+                    }
+                }
+            ]
+        }
+    }
+}

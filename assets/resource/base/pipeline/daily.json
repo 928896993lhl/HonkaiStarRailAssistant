@@ -1,0 +1,81 @@
+{
+    "_comment": "领取日常奖励 Pipeline - PC 端",
+
+    "GainDailyAwards": {
+        "next": [
+            "OpenDailyMissions",
+            "OpenNamelessHonor",
+            "Email",
+            "ExitToHome"
+        ]
+    },
+    "OpenDailyMissions": {
+        "recognition": "TemplateMatch",
+        "template": "daily/DailyMissionsButton.png",
+        "action": "Click",
+        "_comment": "打开每日实训界面",
+        "next": "CheckDailyMissions"
+    },
+    "CheckDailyMissions": {
+        "recognition": "OCR",
+        "expected": "领取",
+        "action": "Click",
+        "_comment": "领取可领取的每日奖励",
+        "next": "CloseDailyMissions"
+    },
+    "CloseDailyMissions": {
+        "recognition": "TemplateMatch",
+        "template": "common/CloseButton.png",
+        "action": "Click",
+        "_comment": "关闭每日界面",
+        "next": "OpenNamelessHonor"
+    },
+    "OpenNamelessHonor": {
+        "recognition": "TemplateMatch",
+        "template": "daily/NamelessHonorButton.png",
+        "action": "Click",
+        "_comment": "打开无名勋礼（通行证）",
+        "next": "ClaimHonorRewards"
+    },
+    "ClaimHonorRewards": {
+        "recognition": "TemplateMatch",
+        "template": "daily/ClaimAllRewards.png",
+        "action": "Click",
+        "_comment": "一键领取通行证奖励",
+        "next": "CloseHonor"
+    },
+    "CloseHonor": {
+        "recognition": "TemplateMatch",
+        "template": "common/CloseButton.png",
+        "action": "Click",
+        "_comment": "关闭通行证界面",
+        "next": "Email"
+    },
+    "Email": {
+        "recognition": "TemplateMatch",
+        "template": "daily/MailButton.png",
+        "action": "Click",
+        "_comment": "打开邮件",
+        "next": "ClaimMail"
+    },
+    "ClaimMail": {
+        "recognition": "TemplateMatch",
+        "template": "daily/ClaimAllMail.png",
+        "action": "Click",
+        "_comment": "一键领取全部邮件",
+        "next": "CloseMail"
+    },
+    "CloseMail": {
+        "recognition": "TemplateMatch",
+        "template": "common/CloseButton.png",
+        "action": "Click",
+        "_comment": "关闭邮件界面",
+        "next": "ExitToHome"
+    },
+    "ExitToHome": {
+        "recognition": "TemplateMatch",
+        "template": "common/HomeButton.png",
+        "action": "Click",
+        "_comment": "回到星穹列车主页"
+    }
+}

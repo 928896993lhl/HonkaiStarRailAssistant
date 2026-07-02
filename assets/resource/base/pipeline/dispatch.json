@@ -1,0 +1,45 @@
+{
+    "_comment": "委托派遣 Pipeline - PC 端",
+
+    "Dispatch": {
+        "recognition": "TemplateMatch",
+        "template": "dispatch/DispatchButton.png",
+        "action": "Click",
+        "_comment": "打开委托派遣界面",
+        "next": "CheckDispatchStatus"
+    },
+    "CheckDispatchStatus": {
+        "next": [
+            "ClaimCompleted",
+            "SendNewDispatch"
+        ],
+        "_comment": "检查是否有已完成委托或可派遣"
+    },
+    "ClaimCompleted": {
+        "recognition": "TemplateMatch",
+        "template": "dispatch/ClaimDispatch.png",
+        "action": "Click",
+        "_comment": "收已完成委托",
+        "next": "SendNewDispatch"
+    },
+    "SendNewDispatch": {
+        "recognition": "TemplateMatch",
+        "template": "dispatch/DispatchSlot.png",
+        "action": "Click",
+        "_comment": "点击空槽位",
+        "next": "SelectDispatchMission"
+    },
+    "SelectDispatchMission": {
+        "recognition": "TemplateMatch",
+        "template": "dispatch/ConfirmDispatch.png",
+        "action": "Click",
+        "_comment": "确认派遣",
+        "next": "CheckDispatchStatus"
+    },
+    "CloseDispatch": {
+        "recognition": "TemplateMatch",
+        "template": "common/CloseButton.png",
+        "action": "Click",
+        "_comment": "关闭委托界面"
+    }
+}

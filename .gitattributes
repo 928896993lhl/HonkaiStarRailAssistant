@@ -1,0 +1,22 @@
+# 统一换行符为 LF
+* text=auto
+
+# JSON 文件
+*.json text eol=lf
+
+# Python 文件
+*.py text eol=lf
+
+# Markdown 文件
+*.md text eol=lf
+
+# 图片文件 — 二进制
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.bmp binary
+*.ico binary
+
+# 模型文件 — 二进制
+*.onnx binary
+*.mlmodel binary

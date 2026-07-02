@@ -1,0 +1,119 @@
+{
+    "_comment": "清体力/刷副本 Pipeline - PC 端 1920x1080 窗口模式",
+    "_usage": "支持侵蚀隧洞(遗器)、经验材料、行迹材料等副本自动循环刷取",
+
+    "Combat": {
+        "recognition": "TemplateMatch",
+        "template": "combat/MissionButton.png",
+        "action": "Click",
+        "_comment": "点击主界面的「作战」按钮",
+        "next": "SelectMission"
+    },
+    "SelectMission": {
+        "recognition": "TemplateMatch",
+        "template": ["combat/IntoMissionButton.png", "combat/IntoMissionButton-White.png"],
+        "action": "Click",
+        "_comment": "在作战界面点击「进入关卡」",
+        "next": "IntoMissionType"
+    },
+    "IntoMissionType": {
+        "recognition": "OCR",
+        "action": "Click",
+        "_comment": "点击材料分类标签（由 option.作战关卡 动态覆写 expected）",
+        "next": "DoFindMission"
+    },
+    "ToEquiment": {
+        "recognition": "TemplateMatch",
+        "template": "combat/EquimentButton.png",
+        "action": "Click",
+        "_comment": "切换到遗器分类",
+        "next": "DoFindMission"
+    },
+    "DoFindMission": {
+        "next": [
+            "FindMission",
+            "FindMissionScroll"
+        ],
+        "_comment": "尝试直接找到关卡，找不到则滚动"
+    },
+    "FindMission": {
+        "recognition": "OCR",
+        "action": "DoNothing",
+        "_comment": "OCR 匹配关卡名称（由 option 动态覆写 expected）",
+        "next": "Transform"
+    },
+    "FindMissionScroll": {
+        "action": "Swipe",
+        "begin": [900, 450, 30, 20],
+        "end": [900, 250, 30, 22],
+        "_comment": "鼠标拖拽滚动关卡列表",
+        "next": "DoFindMission"
+    },
+    "Transform": {
+        "recognition": "OCR",
+        "action": "Click",
+        "target": true,
+        "target_offset": [500, 0, 0, 0],
+        "_comment": "点击关卡右侧的「传送」按钮",
+        "post_delay": 5000,
+        "next": "Battle"
+    },
+    "Battle": {
+        "recognition": "TemplateMatch",
+        "template": "combat/Battle.png",
+        "action": "Click",
+        "_comment": "点击「挑战」",
+        "next": ["StartBattle", "NoPower"]
+    },
+    "StartBattle": {
+        "recognition": "TemplateMatch",
+        "template": "combat/StartBattle.png",
+        "action": "Click",
+        "_comment": "确认出战编队，开始战斗",
+        "next": "AutoBattle"
+    },
+    "AutoBattle": {
+        "recognition": "TemplateMatch",
+        "template": "combat/AutoBattle.png",
+        "action": "Click",
+        "_comment": "开启自动战斗",
+        "next": ["Replay", "Battling"]
+    },
+    "Replay": {
+        "recognition": "OCR",
+        "expected": "再来一次",
+        "action": "Click",
+        "_comment": "战斗结束，点击再来一次",
+        "next": "DoReplay"
+    },
+    "DoReplay": {
+        "next": [
+            "NoPower",
+            "Battling",
+            "Replay"
+        ]
+    },
+    "Battling": {
+        "recognition": "TemplateMatch",
+        "template": "combat/BattlePause.png",
+        "_comment": "战斗进行中，等待",
+        "next": "DoReplay",
+        "post_delay": 5000
+    },
+    "NoPower": {
+        "recognition": "OCR",
+        "expected": ["开拓力补充", "取消"],
+        "order_by": "Vertical",
+        "index": 1,
+        "action": "Click",
+        "_comment": "体力不足弹窗 → 点击取消",
+        "next": ["ExitBattle", "ExitToHome"]
+    },
+    "ExitBattle": {
+        "recognition": "OCR",
+        "expected": "退出关卡",
+        "action": "Click",
+        "_comment": "退出当前副本",
+        "next": "Combat"
+    }
+}

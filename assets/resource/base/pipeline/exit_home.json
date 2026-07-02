@@ -1,0 +1,23 @@
+{
+    "_comment": "回到首页 Pipeline - 通用退出",
+
+    "ExitToHome": {
+        "next": [
+            "PressEsc",
+            "CheckHome"
+        ]
+    },
+    "PressEsc": {
+        "recognition": "TemplateMatch",
+        "template": "common/HomeButton.png",
+        "action": "DoNothing",
+        "_comment": "如果已经在主页，不做任何操作",
+        "next": ""
+    },
+    "CheckHome": {
+        "recognition": "TemplateMatch",
+        "template": "common/HomeButton.png",
+        "action": "DoNothing",
+        "_comment": "确认已回到主页"
+    }
+}
