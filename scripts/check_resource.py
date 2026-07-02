@@ -14,16 +14,28 @@ PIPELINE_DIR = WORKING_DIR / "assets" / "resource" / "base" / "pipeline"
 IMAGE_DIR = WORKING_DIR / "assets" / "resource" / "base" / "image"
 
 
+def _load_all_tasks():
+    """加载所有 Pipeline 文件中的任务名"""
+    all_tasks = {}
+    for pf in PIPELINE_DIR.glob("*.json"):
+        with open(pf, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        for task_name in data:
+            if not task_name.startswith("_"):
+                all_tasks[task_name] = pf.name
+    return all_tasks
+
+
 def check_pipeline_json():
     """检查所有 Pipeline JSON 文件格式"""
     errors = 0
+    all_tasks = _load_all_tasks()
 
     for pipeline_file in PIPELINE_DIR.glob("*.json"):
         try:
             with open(pipeline_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
 
-            # 检查每个任务的 recognition + template 组合
             for task_name, task_config in data.items():
                 if task_name.startswith("_"):
                     continue
@@ -34,14 +46,14 @@ def check_pipeline_json():
                         print(f"⚠️  [{pipeline_file.name}] {task_name}: TemplateMatch 缺少 template")
                         errors += 1
 
-                # 检查 next 是否指向有效的任务
+                # 检查 next 是否指向有效的任务（跨文件查找）
                 if "next" in task_config:
                     next_tasks = task_config["next"]
                     if isinstance(next_tasks, str):
                         next_tasks = [next_tasks]
                     for nt in next_tasks:
-                        if nt and nt not in data:
-                            print(f"⚠️  [{pipeline_file.name}] {task_name} → {nt}: 目标任务不存在")
+                        if nt and nt not in data and nt not in all_tasks:
+                            print(f"⚠️  [{pipeline_file.name}] {task_name} → {nt}: 目标任务不存在（跨文件也未找到）")
                             errors += 1
 
         except json.JSONDecodeError as e:
