@@ -1,0 +1,6 @@
+{
+    "recognition": "OCR",
+    "model": "ppocr_v4",
+    "backend": "ONNXRuntime",
+    "device": "CPU"
+}
