@@ -1,5 +1,5 @@
 {
-    "interface_version": 3,
+    "interface_version": 2,
     "name": "崩坏:星穹铁道助手",
     "description": "基于 MaaFramework 实现的 PC 端崩坏:星穹铁道自动化助手。图像识别 + Win32 窗口控制，解放双手！",
     "version": "0.1.0",
